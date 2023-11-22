@@ -1,6 +1,10 @@
 import React from "react";
 import ContactForm from "../../shared/ContactForm";
 const Contact = ({ description, title }) => {
+
+  const {companyEmail, companyPhone, companyAddress} = JSON.parse(localStorage.getItem('globalData'))
+  
+
   return (
     <>
       <section className="relative z-10 overflow-hidden bg-white pl-10 py-20 dark:bg-dark lg:py-[120px]">
@@ -37,7 +41,7 @@ const Contact = ({ description, title }) => {
                       Our Location
                     </h4>
                     <p className="text-base text-body-color dark:text-dark-6">
-                      1 North pole H0H0H0
+                      {companyAddress && companyAddress}
                     </p>
                   </div>
                 </div>
@@ -77,7 +81,7 @@ const Contact = ({ description, title }) => {
                       Phone Number
                     </h4>
                     <p className="text-base text-body-color dark:text-dark-6">
-                      (+12)345 6789
+                      {companyPhone && companyPhone}
                     </p>
                   </div>
                 </div>
@@ -102,7 +106,7 @@ const Contact = ({ description, title }) => {
                       Email Address
                     </h4>
                     <p className="text-base text-body-color dark:text-dark-6">
-                      info@yourdomain.com
+                      {companyEmail && companyEmail}
                     </p>
                   </div>
                 </div>

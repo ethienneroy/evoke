@@ -1,10 +1,8 @@
 import delve from 'dlv';
 import Cta from './cta';
-import LocalSwitch from './localSwitch';
 import Logo from './logo';
 import Nav from './nav';
 
-import GitHubButton from 'react-github-btn';
 
 const Navigation = ({ pageData, navigation, companyEmail, companyPhone }) => {
   return (

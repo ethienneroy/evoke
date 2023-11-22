@@ -2,12 +2,22 @@
   "collectionName": "components_shared_features_checks",
   "info": {
     "displayName": "featuresCheck",
-    "icon": "check"
+    "icon": "check",
+    "description": ""
   },
   "options": {},
   "attributes": {
     "text": {
       "type": "string"
+    },
+    "guestPrice": {
+      "type": "decimal"
+    },
+    "memberPrice": {
+      "type": "decimal"
+    },
+    "description": {
+      "type": "text"
     }
   }
 }

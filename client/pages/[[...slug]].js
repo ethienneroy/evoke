@@ -15,6 +15,7 @@ const Universals = ({ global, pageData, preview }) => {
   }
 
   const blocks = delve(pageData, 'attributes.blocks');
+  localStorage.setItem('globalData', JSON.stringify(global))
   return (
     <Layout global={global} pageData={pageData} type="pages" preview={preview}>
       {blocks && (

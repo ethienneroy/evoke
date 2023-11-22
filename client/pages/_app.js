@@ -30,12 +30,13 @@ MyApp.getInitialProps = async (appContext) => {
   try {
     const res = await fetch(
       getStrapiURL(
-        `/global?populate[navigation][populate]=*&populate[footer][populate][footerColumns][populate]=*&locale=${locale}`
+        `/global?populate[navigation][populate]=*&populate[footer][populate]=*,terms.link&populate[footerColumns][populate]=*&locale=${locale}`
       )
     );
 
     const globalData = await res.json();
     const globalDataAttributes = globalData.data.attributes;
+    // localStorage.setItem('globalData', JSON.stringify(globalDataAttributes))
 
     return { ...appProps, pageProps: { global: globalDataAttributes } };
   } catch (error) {

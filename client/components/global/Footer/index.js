@@ -5,8 +5,11 @@ import Columns from './columns';
 
 const Footer = ({ footer, pageData }) => {
   const label = delve(footer, 'label');
+  const terms = delve(footer, 'terms');
   const theme = delve(footer, 'button.theme');
   const socialNetworks = delve(footer, 'socialNetworks');
+
+  console.log('terms', footer)
 
   return (
     <footer className="bg-white mt-4">
@@ -15,7 +18,7 @@ const Footer = ({ footer, pageData }) => {
           columns={delve(footer, 'footerColumns')}
           locale={delve(pageData, 'attributes.locale')}
         />
-        <div className="pt-8 flex border-t border-gray-200 max-w-xs mx-auto items-center justify-between">
+        <div className="pt-4 flex border-t border-gray-200 w-full mx-auto items-center justify-between">
           {socialNetworks &&
             socialNetworks.map((network, index) => (
               <SocialLogo url={delve(network, 'url')} size="20" key={index} />
@@ -32,11 +35,15 @@ const Footer = ({ footer, pageData }) => {
             </button>
           </div>
         )}
-        {label && (
-          <div className="text-center pt-10 sm:pt-12 font-light flex items-center justify-center">
-            {label}
-          </div>
+        <div className='pb-5 flex flex-row justify-between'>
+        {footer.terms && (
+          <CustomLink {...footer.terms} />
+
         )}
+        {label && (
+            label
+        )}
+        </div>
       </div>
     </footer>
   );

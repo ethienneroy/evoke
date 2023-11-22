@@ -11,9 +11,6 @@ export function getStrapiMedia(url) {
 }
 
 export function getStrapiURL(path) {
-  console.log('getting this',`${
-    process.env.NEXT_PUBLIC_API_URL || 'http://localhost:1337'
-  }/api${path}` )
   return `${
     process.env.NEXT_PUBLIC_API_URL || 'http://localhost:1337'
   }/api${path}`;
@@ -56,10 +53,9 @@ export function getData(slug, locale, apiID, kind, preview) {
     } else if (apiID == 'article') {
       prefix = `/blog`;
     }
-    const slugToReturn = `${prefix}/${slug}?lang=${locale}`;
+    const slugToReturn = `${prefix}/${slug}`;
     const apiUrl = `/${pluralize(
       apiID
-    // )}?filters[slug][$eq]=${slug}&locale=${locale}${previewParams}&populate[blocks][populate]=*&populate=localizations&populate[seo][populate]=metaSocial.image`;
     )}?filters[slug][$eq]=${slug}&locale=${locale}${previewParams}&populate[blocks][populate]=slides,slides.image,slides.button,slides.button.link,image,members.picture,header,buttons.link,faq,featuresCheck,cards,pricingCards.perks,articles,author.picture,images,cards.image,image&populate=localizations&populate[seo][populate]=metaSocial.image`;
 
     return {
@@ -67,7 +63,7 @@ export function getData(slug, locale, apiID, kind, preview) {
       slug: slugToReturn,
     };
   } else {
-    const apiUrl = `/${apiID}?locale=${locale}${previewParams}&populate[blocks][populate]=*,buttons.link&populate=localizations&populate[header]=*&populate[seo]=metaSocial`;
+    const apiUrl = `/${apiID}?locale=${locale}${previewParams}&populate[blocks][populate]=*,buttons.link,terms.link&populate=localizations&populate[header]=*&populate[seo]=metaSocial`;
 
     if (apiID.includes('-page')) {
       const slugToReturn =

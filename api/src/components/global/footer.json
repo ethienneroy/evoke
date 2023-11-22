@@ -21,6 +21,11 @@
       "repeatable": false,
       "component": "shared.button"
     },
+    "terms": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.link"
+    },
     "label": {
       "type": "string"
     }
