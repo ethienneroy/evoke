@@ -1,6 +1,7 @@
 import Link from 'next/link';
 
 const CustomLink = ({ label, href, locale, target, isExternal }) => {
+  console.log('local', label)
   if (isExternal) {
     return (
       <Link href={href}>

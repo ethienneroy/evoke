@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_blocks_carousels",
+  "info": {
+    "displayName": "Carousel",
+    "icon": "bulletList",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "slides": {
+      "displayName": "Slide",
+      "type": "component",
+      "repeatable": true,
+      "component": "blocks.slide"
+    }
+  }
+}

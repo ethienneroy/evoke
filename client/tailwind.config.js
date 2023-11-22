@@ -37,11 +37,14 @@ module.exports = {
       ringWidth: ['hover', 'active'],
     },
   },
-  plugins: [],
+  plugins: [require("daisyui")],
   safelist: [
     {
       pattern:
         /(bg|text)-(primary|secondary|muted)/,
     },
   ],
+  daisyui: {
+    themes: ['light']
+  }
 };

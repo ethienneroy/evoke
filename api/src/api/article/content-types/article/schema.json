@@ -73,12 +73,6 @@
       },
       "component": "shared.seo"
     },
-    "category": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::category.category",
-      "inversedBy": "articles"
-    },
     "ckeditor_content": {
       "pluginOptions": {
         "i18n": {
@@ -91,6 +85,12 @@
       },
       "customField": "plugin::ckeditor.CKEditor",
       "required": true
+    },
+    "author": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "articles"
     }
   }
 }

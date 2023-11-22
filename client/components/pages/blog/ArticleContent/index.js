@@ -56,9 +56,9 @@ const ArticleContent = ({ attributes }) => {
           <Link href={`/blog?lang=${locale}`}>
             <button
               type="button"
-              className="ml-2 py-4 mt-8 px-6 bg-secondary hover:bg-secondary-darker text-white w-1/8 text-center text-base font-semibold shadow-sm rounded-md"
+              className="ml-2 py-4 mt-8 px-6 bg-primary hover:bg-secondary-darker text-white w-1/8 text-center text-base font-semibold shadow-sm rounded-md"
             >
-              Back to articles
+              Back
             </button>
           </Link>
         </div>

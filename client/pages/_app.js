@@ -33,6 +33,7 @@ MyApp.getInitialProps = async (appContext) => {
         `/global?populate[navigation][populate]=*&populate[footer][populate][footerColumns][populate]=*&locale=${locale}`
       )
     );
+
     const globalData = await res.json();
     const globalDataAttributes = globalData.data.attributes;
 

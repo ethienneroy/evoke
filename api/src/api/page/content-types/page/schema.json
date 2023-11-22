@@ -8,7 +8,6 @@
     "description": ""
   },
   "options": {
-    "reviewWorkflows": true,
     "draftAndPublish": true
   },
   "pluginOptions": {
@@ -47,7 +46,10 @@
         "blocks.pricing",
         "blocks.related-articles",
         "blocks.team",
-        "blocks.testimonial"
+        "blocks.testimonial",
+        "blocks.contact-us",
+        "blocks.carousel",
+        "blocks.slide"
       ],
       "pluginOptions": {
         "i18n": {

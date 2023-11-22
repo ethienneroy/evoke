@@ -48,7 +48,17 @@ const RichContent = dynamic(
     ssr: true,
   }
 );
-
+const ContactUs = dynamic(
+  () => import('../../blocks/ContactUs'),
+  {
+    ssr: true
+  })
+const Carousel = dynamic(
+  () => import('../../blocks/Carousel'),
+  {
+    ssr: false
+  }
+)
 const BlockManager = ({ blocks, contentType, pageData, type }) => {
   const router = useRouter();
   const query = router.query;
@@ -95,12 +105,18 @@ const BlockManager = ({ blocks, contentType, pageData, type }) => {
           case 'blocks.features-with-images':
             Block = FeaturesWithImages;
             break;
+          case 'blocks.contact-us':
+            Block = ContactUs;
+            break;
+          case 'blocks.carousel':
+            Block = Carousel;
+            break;
         }
 
         return Block ? (
           <div key={`index-${index}`}>
-            {type && contentType && (
-              <span className="group bg-blue-100 text-blue-800 text-sm font-semibold inline-flex items-center absolute right-0 m-2 p-1.5 rounded-full dark:bg-gray-700 dark:text-blue-400">
+            {/* {type && contentType && (
+              <span className="group bg-primary text-blue-800 text-sm font-semibold inline-flex items-center absolute right-0 m-2 p-1.5 rounded-full dark:bg-gray-700 dark:text-blue-400">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="w-3 h-3 m-2"
@@ -142,11 +158,9 @@ const BlockManager = ({ blocks, contentType, pageData, type }) => {
                 </div>
                 {window.__NEXT_PUBLIC_API_URL && (
                   <Link
-                    href={`${
-                      window.__NEXT_PUBLIC_API_URL || 'http://localhost:1337'
-                    }/admin/content-manager/${type}/api::${contentType}.${contentType}/${
-                      pageData?.id
-                    }?plugins[i18n][locale]=${query?.lang || 'en'}`}
+                    href={`${window.__NEXT_PUBLIC_API_URL || 'http://localhost:1337'
+                      }/admin/content-manager/${type}/api::${contentType}.${contentType}/${pageData?.id
+                      }?plugins[i18n][locale]=${query?.lang || 'en'}`}
                   >
                     <a target="_blank">
                       <svg
@@ -166,7 +180,7 @@ const BlockManager = ({ blocks, contentType, pageData, type }) => {
                   </Link>
                 )}
               </span>
-            )}
+            )} */}
 
             <Block component={block.__component} {...block} />
           </div>

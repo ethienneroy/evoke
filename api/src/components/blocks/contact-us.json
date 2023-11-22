@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_blocks_contact_uses",
+  "info": {
+    "displayName": "Contact Us",
+    "icon": "envelop"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "senderEmail": {
+      "type": "email"
+    },
+    "phoneNumber": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    }
+  }
+}
