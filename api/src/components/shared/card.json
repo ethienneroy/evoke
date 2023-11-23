@@ -2,7 +2,8 @@
   "collectionName": "components_shared_cards",
   "info": {
     "displayName": "card",
-    "icon": "sim-card"
+    "icon": "sim-card",
+    "description": ""
   },
   "options": {},
   "attributes": {
@@ -13,13 +14,28 @@
       "type": "string"
     },
     "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
+    },
+    "informations": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "customField",
+      "options": {
+        "preset": "rich"
+      },
+      "customField": "plugin::ckeditor.CKEditor",
+      "required": true
     }
+    
   }
 }

@@ -1,14 +1,94 @@
-import React from "react";
+'use client'
+
+import React, { useEffect, useRef, useState, useMemo } from "react";
 import delve from "dlv";
 import CustomLink from '../../shared/CustomLink';
 
 import { getStrapiMedia } from "../../../utils";
 
+// import { useRouter } from 'next/router'
+
+function useOnScreen(ref) {
+
+    const [isIntersecting, setIntersecting] = useState(false)
+
+    const observer = useMemo(() => new IntersectionObserver(
+        ([entry]) => setIntersecting(entry.isIntersecting)
+    ), [ref])
+
+
+    useEffect(() => {
+        observer.observe(ref.current)
+        return () => observer.disconnect()
+    }, [])
+
+    return isIntersecting
+}
 const Carousel = ({ slides }) => {
-    console.log(slides)
+    // const router = useRouter()
+    // useEffect(() => {
+    const ref = useRef(null)
+    const myInterval = useRef();
+
+    const isVisible = useOnScreen(ref)
+
+    const intervalFunction = () => {
+        if (typeof window !== 'undefined') {
+            console.log('changing slides', window.location.hash)
+            const slide = window.location.hash && window.location.hash.split('#slide').length ? window.location.hash.split('#slide')[1] : '0'
+            const newSlide = Number(slide) + 1 > slides.length - 1 ? 0 : Number(slide) + 1
+            window.location.hash = `#slide${newSlide}`
+        }
+    }
+    let intervalId;
+
+    useEffect(() => {
+        // You had this line to start timer on load
+        // but you can just set the initial state to `true`
+        //setFlag(true);
+        // Clear time on component dismount
+        return () => clearInterval(myInterval.current);
+      }, []);
+
+    function startInterval() {
+        myInterval.current = setInterval(intervalFunction, 5000);
+    }
+    function stopInterval() {
+        clearInterval(myInterval.current);
+        // intervalId.current = null;
+
+    }
+
+    const previous = (id) => {
+        window.location.hash = `#slide${id - 1}`
+
+        // interval = setInterval(intervalFunction, 5000)
+        stopInterval()
+        startInterval()
+    }
+
+    const next = (id) => {
+        window.location.hash = `#slide${id + 1}`
+
+        // clearInterval(interval)
+        // interval = setInterval(intervalFunction, 5000)
+        stopInterval()
+        startInterval()
+    }
+
+    useEffect(() => {
+        console.log('in the effect', isVisible)
+        if (!isVisible) {
+            console.log('celaring the interval')
+            stopInterval()
+        } else {
+            startInterval()
+        }
+    }, [isVisible])
+
     return (
-        <div className="carousel w-full h-screen">
-            {slides.map(({description, button, image}, id) => (
+        <div className="carousel w-full h-screen" ref={ref}>
+            {slides.map(({ description, button, image }, id) => (
 
                 <div id={`slide${id}`} className="carousel-item relative w-full h-full">
                     <img src={getStrapiMedia(delve(image, "data.attributes.url"))} className="w-full object-cover backdrop-brightness-50" />
@@ -44,8 +124,8 @@ const Carousel = ({ slides }) => {
                         </div>
                     </div>
                     <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                        <a href={`#slide${id - 1}`} className="btn btn-circle">❮</a>
-                        <a href={`#slide${id + 1}`} className="btn btn-circle">❯</a>
+                        <button onClick={() => previous(id)} className="btn btn-circle">❮</button>
+                        <button onClick={() => next(id)} className="btn btn-circle">❯</button>
                     </div>
                 </div>
             ))}

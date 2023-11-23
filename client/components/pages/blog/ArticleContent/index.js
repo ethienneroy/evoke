@@ -4,9 +4,9 @@ import Link from 'next/link';
 import 'github-markdown-css';
 
 import styles from './ArticleContent.module.css';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 import { CKEditor } from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 import Container from '../../../shared/Container';
 

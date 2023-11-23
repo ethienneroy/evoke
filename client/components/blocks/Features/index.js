@@ -3,7 +3,7 @@ import FeatureCards from './feature-cards';
 
 const Features = ({ header, cards }) => {
   return (
-    <div className="bg-gray-50 pb-24">
+    <div className="bg-gray-50 pb-24"  id="features-section">
       <Header {...header} />
       <FeatureCards cards={cards} />
     </div>

@@ -35,6 +35,7 @@ module.exports = {
     extend: {
       // ...
       ringWidth: ['hover', 'active'],
+      
     },
   },
   plugins: [require("daisyui")],
