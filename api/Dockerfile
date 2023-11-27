@@ -1,9 +1,9 @@
 FROM strapi/strapi
 WORKDIR /app
 COPY ./package.json ./
-RUN yarn install
+RUN npm install
 COPY . .
 ENV DATABASE_CLIENT=sqlite
-ENV DATABASE_FILENAME=./data.db
+ENV DATABASE_FILENAME=./.tmp/data.db
 EXPOSE 1337
-CMD ["yarn", "start"]
+CMD ["npm", "start"]
