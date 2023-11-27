@@ -12,8 +12,8 @@ module.exports = ({ env }) => ({
         host: 'smtp.gmail.com', //SMTP Host
         port: 465   , //SMTP Port
         secure: true,
-        username: 'roy.ethienne@gmail.com',
-        password: 'Cobalt12345',
+        username: '***@gmail.com',
+        password: '*****',
         rejectUnauthorized: true,
         requireTLS: true,
         connectionTimeout: 1,
