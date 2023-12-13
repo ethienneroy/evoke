@@ -17,6 +17,7 @@
     "@strapi/plugin-i18n": "4.13.5",
     "@strapi/plugin-seo": "^1.9.4",
     "@strapi/plugin-users-permissions": "4.13.5",
+    "@strapi/provider-email-sendgrid": "^4.15.5",
     "@strapi/strapi": "4.13.5",
     "@webbio/strapi-plugin-scheduler": "^0.1.2",
     "better-sqlite3": "^7.6.2",

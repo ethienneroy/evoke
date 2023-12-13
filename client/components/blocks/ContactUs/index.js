@@ -3,7 +3,8 @@ import ContactForm from "../../shared/ContactForm";
 const Contact = ({ description, title }) => {
 
   const {companyEmail, companyPhone, companyAddress} = JSON.parse(localStorage.getItem('globalData'))
-  
+
+
 
   return (
     <>

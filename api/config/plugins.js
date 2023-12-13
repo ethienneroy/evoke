@@ -7,21 +7,15 @@ module.exports = ({ env }) => ({
   },
   email: {
     config: {
-      provider: 'strapi-provider-email-smtp',
+      provider: 'sendgrid', // For community providers pass the full package name (e.g. provider: 'strapi-provider-email-mandrill')
       providerOptions: {
-        host: 'smtp.gmail.com', //SMTP Host
-        port: 465   , //SMTP Port
-        secure: true,
-        username: '***@gmail.com',
-        password: '*****',
-        rejectUnauthorized: true,
-        requireTLS: true,
-        connectionTimeout: 1,
+        apiKey: env('SENDGRID_API_KEY'),
+      },
+      settings: {
+        defaultFrom: 'contact@evoketennis.com.au',
+        defaultReplyTo: 'contact@evoketennis.com.au',
+        testAddress: 'contact@evoketennis.com.au',
       },
     },
-    settings: {
-      defaultFrom: 'roy.ethienne@gmail.com',
-      defaultReplyTo: 'roy.ethienne@gmail.com',
-    }, 
-  },    
+  },
 });

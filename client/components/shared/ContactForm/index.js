@@ -1,21 +1,27 @@
 
-const ContactTextArea = ({ row, placeholder, name, defaultValue }) => {
+import { useState } from 'react'
+// import { getStrapiURL } from "../../../utils";
+import { toast} from 'react-toastify'
+
+const ContactTextArea = ({ row, placeholder, name, defaultValue, handleChange, value }) => {
     return (
         <>
             <div className="mb-6">
                 <textarea
                     rows={row}
                     placeholder={placeholder}
+                    onChange={handleChange}
                     name={name}
                     className="w-full resize-none rounded border border-stroke px-[14px] py-3 text-base text-body-color outline-none focus:border-primary dark:border-dark-3 dark:bg-dark dark:text-dark-6"
                     defaultValue={defaultValue}
+                    value={value}
                 />
             </div>
         </>
     );
 };
 
-const ContactInputBox = ({ type, placeholder, name, value }) => {
+const ContactInputBox = ({ type, placeholder, name, value, handleChange }) => {
     return (
         <>
             <div className="mb-6">
@@ -24,6 +30,7 @@ const ContactInputBox = ({ type, placeholder, name, value }) => {
                     placeholder={placeholder}
                     name={name}
                     value={value}
+                    onChange={handleChange}
                     className="w-full rounded border border-stroke px-[14px] py-3 text-base text-body-color outline-none focus:border-primary dark:border-dark-3 dark:bg-dark dark:text-dark-6"
                 />
             </div>
@@ -31,42 +38,81 @@ const ContactInputBox = ({ type, placeholder, name, value }) => {
     );
 };
 
-const ContactForm = ({popup = false, subject}) => {
-    console.log('selected subjkect', subject)
+const ContactForm = ({ popup = false, subject, sendEmail }) => {
+    const [state, setState] = useState({
+        email: "",
+        message: ""
+    });
+
+    function handleChange(e) {
+        console.log('handling change', e.target.value)
+        setState({ ...state, [e.target.name]: e.target.value });
+    }
+
+    async function onSubmit(event) {
+        event.preventDefault()
+        fetch('/api/contactUs', { method: 'post', body: JSON.stringify(state) })
+        .then((res) => {
+            console.log('should clear form')
+            toast("Message sent!")
+            setState({
+                email: '',
+                phone: '',
+                name: '',
+                subject: '',
+                details: '',
+            })
+        })
+        // console.log('isisi a', a)
+    }
+
+
     return (
         <div className={`w-full ${popup ? 'lg:w-full xl-w-full' : 'px-4 lg:w-1/2 xl:w-5/12'}`}>
             <div className="relative rounded-lg bg-white p-8 shadow-lg dark:bg-dark-2 sm:p-12">
-                <form>
+                <form onSubmit={onSubmit} method="post">
                     <ContactInputBox
                         type="text"
                         name="name"
+                        handleChange={handleChange}
                         placeholder="Your Name"
+                        value={state.name}
                     />
                     <ContactInputBox
                         type="text"
+                        handleChange={handleChange}
                         name="email"
                         placeholder="Your Email"
+
+                        value={state.email}
                     />
                     <ContactInputBox
                         type="text"
+                        handleChange={handleChange}
                         name="phone"
                         placeholder="Your Phone"
+                        value={state.phone}
                     />
                     <ContactInputBox
                         type="text"
                         name="subject"
+                        handleChange={handleChange}
                         placeholder="Your subject"
-                        value={!!subject ? subject : null}
+                        // value={!!subject ? subject : null}
+                        value={state.subject}
                     />
                     <ContactTextArea
                         row="6"
                         placeholder="Your Message"
                         name="details"
+                        handleChange={handleChange}
                         defaultValue=""
+                        value={state.details}
                     />
                     <div>
                         <button
                             type="submit"
+                            // onClick={sendEmail}
                             className="w-full rounded border border-primary bg-primary p-3 text-white transition hover:bg-opacity-90"
                         >
                             Send Message
@@ -887,3 +933,11 @@ const ContactForm = ({popup = false, subject}) => {
 }
 
 export default ContactForm
+
+export async function getServerSideProps(context) {
+    const { sendEmail } = require('../../../pages/api/contactUs');
+    return {
+        sendEmail
+    }
+
+}
