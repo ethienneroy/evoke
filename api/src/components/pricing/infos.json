@@ -1,0 +1,31 @@
+{
+    "collectionName": "components_shared_infos",
+    "info": {
+      "displayName": "infos",
+      "icon": "adjust"
+    },
+    "options": {},
+    "attributes": {
+      "durationLabel": {
+        "type": "string",
+        "required": true
+      },
+      "selectLabel": {
+        "type": "string",
+        "required": true
+      },
+      "includedlabel": {
+        "type": "string",
+        "required": true
+      },
+      "additionalInfos": {
+        "type": "string",
+        "required": false
+      },
+      "currency": {
+        "type": "string",
+        "required": true
+      }
+    }
+  }
+  

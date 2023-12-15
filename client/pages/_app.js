@@ -42,7 +42,7 @@ MyApp.getInitialProps = async (appContext) => {
   try {
     const res = await fetch(
       getStrapiURL(
-        `/global?populate[navigation][populate]=*&populate[footer][populate]=*,terms.link&populate[footerColumns][populate]=*&locale=${locale}`
+        `/global?populate[navigation][populate]=*&populate[footer][populate]=*,terms.link,privacy.link&populate[footerColumns][populate]=*&locale=${locale}`
       )
     );
 

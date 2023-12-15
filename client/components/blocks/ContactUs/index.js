@@ -2,7 +2,7 @@ import React from "react";
 import ContactForm from "../../shared/ContactForm";
 const Contact = ({ description, title }) => {
 
-  const {companyEmail, companyPhone, companyAddress} = JSON.parse(localStorage.getItem('globalData'))
+  const {companyEmail, companyPhone, companyAddress, location} = JSON.parse(localStorage.getItem('globalData'))
 
 
 
@@ -42,7 +42,7 @@ const Contact = ({ description, title }) => {
                       Our Location
                     </h4>
                     <p className="text-base text-body-color dark:text-dark-6">
-                      {companyAddress && companyAddress}
+                      {location && location}
                     </p>
                   </div>
                 </div>

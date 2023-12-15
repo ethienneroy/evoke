@@ -10,7 +10,12 @@
       "type": "component",
       "repeatable": false,
       "component": "shared.header"
-    },
+    },    
+    "general": {
+      "type": "component",
+      "repeatable": false,
+      "component": "pricing.infos"
+    },    
     "pricingCards": {
       "type": "component",
       "repeatable": true,

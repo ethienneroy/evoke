@@ -9,10 +9,6 @@
     "name": {
       "type": "string",
       "required": true
-    },
-    "included": {
-      "type": "boolean",
-      "required": true
     }
   }
 }

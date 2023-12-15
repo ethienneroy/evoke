@@ -88,16 +88,16 @@ const Carousel = ({ slides }) => {
 
     return (
         <div className="carousel w-full h-screen" ref={ref}>
-            {slides.map(({ description, button, image }, id) => (
+            {slides.map(({ description, button, image, title }, id) => (
 
                 <div id={`slide${id}`} className="carousel-item relative w-full h-full">
                     <img src={getStrapiMedia(delve(image, "data.attributes.url"))} className="w-full object-cover backdrop-brightness-50" />
                     <div class="absolute inset-0 bg-gray-700 opacity-60 rounded-md"></div>
                     <div class="absolute inset-0 flex items-center justify-center">
                         <div className="lg:flex-grow md:w-1/2 my-12 lg:pl-24 md:pl-16 md:mx-auto flex flex-col md:items-start md:text-left items-center text-center">
-                            {description && (
+                            {title && (
                                 <h1 className="title-font lg:text-6xl text-5xl mb-4 font-black text-gray-900">
-                                    {description}
+                                    {title}
                                 </h1>
                             )}
 

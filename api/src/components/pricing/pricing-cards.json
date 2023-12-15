@@ -13,8 +13,15 @@
     "description": {
       "type": "string"
     },
+    "punchline": {
+      "type": "string"
+    },
     "price": {
       "type": "integer",
+      "required": true
+    },
+    "link": {
+      "type": "string",
       "required": true
     },
     "perks": {

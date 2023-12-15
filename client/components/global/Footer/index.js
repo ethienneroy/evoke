@@ -36,13 +36,20 @@ const Footer = ({ footer, pageData }) => {
           </div>
         )}
         <div className='pb-5 flex flex-row justify-between'>
-        {footer.terms && (
-          <CustomLink {...footer.terms} />
+          <div className='flex flex-row'>
+            {footer.terms && (
+              <CustomLink {...footer.terms} />
 
-        )}
-        {label && (
+            )}
+            <div className='pl-5'>
+              {footer.privacy && (
+                <CustomLink {...footer.privacy} />
+              )}
+            </div>
+          </div>
+          {label && (
             label
-        )}
+          )}
         </div>
       </div>
     </footer>

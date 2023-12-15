@@ -18,6 +18,9 @@
         "audios"
       ]
     },
+    "title": {
+      "type": "text"
+    },
     "description": {
       "type": "text"
     },

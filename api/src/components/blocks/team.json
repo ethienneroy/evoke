@@ -16,6 +16,9 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "plugin::users-permissions.user"
+    },
+    "buttonLabel": {
+      "type": "string"
     }
   }
 }

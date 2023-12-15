@@ -18,25 +18,22 @@ const Cards = ({ cards }) => {
 
   const handleIt = (item) => {
     setSelectedCard(item)
-    console.log('its at', window.document.getElementById('features-section').getBoundingClientRect())
-    
+
     // window.location.hash = item !== null ? '#features-section' : ''
-    window.scrollTo({top: Math.abs(window.document.getElementById('features-section').offsetTop), behavior: 'smooth'})
+    window.scrollTo({ top: Math.abs(window.document.getElementById('features-section').offsetTop), behavior: 'smooth' })
   }
 
 
 
   const handleSelection = (item) => {
     setSubject(item.title)
-    console.log(item)
     setShowContactForm(true)
-
   }
 
   if (selectedCard) {
 
     return (
-      <div className="relative overflow-hidden">
+      <div className="relative overflow-scroll cursor-pointer">
         <button onClick={() => setSelectedCard(null)} className="absolute top-0 right-0 p-4">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="h-6 w-6 text-gray-500">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -52,9 +49,10 @@ const Cards = ({ cards }) => {
                 aria-hidden="true"
                 className="pointer-events-none lg:absolute lg:inset-y-0 lg:mx-auto lg:w-full lg:max-w-7xl"
               >
-                <div className="markdown-body ck-content sm:relative sm:pt-15 lg:absolute transform lg:w-1/2 sm:left-1/2 sm:translate-x-8 lg:left-1/2 lg:top-1/4 lg:translate-x-6 shadow-lg rounded-lg  animate-fade-in-down">
+                <div className="markdown-body ck-content overflow-scroll sm:relative sm:pt-15 lg:absolute transform lg:w-1/2 sm:left-1/2 sm:translate-x-8 lg:left-1/2 lg:top-1/4 lg:translate-x-6 shadow-lg rounded-lg  animate-fade-in-down">
                   <div className={styles['ck-no-border']}>
                     <CKEditor
+
                       editor={ClassicEditor}
                       onReady={(editor) => {
                         editor.ui.view.toolbar.element.remove();
@@ -64,6 +62,7 @@ const Cards = ({ cards }) => {
                         `"${process.env.NEXT_PUBLIC_API_URL}/uploads`
                       ) : null}
                       disabled={true}
+                      plugins={['autogrow']}
                     />
                   </div>
                 </div>
@@ -98,7 +97,7 @@ const Card = ({ item, setSelectedCard, handleSelection, index, isFocused = false
       show={true}
       as="article"
       unmount={false}
-      className={`w-full sm:w-${size} md:w-${size} lg:w-${sizeLg} px-4 py-4 bg-white mt-6 shadow-lg rounded-lg animate-fade-in-down`}
+      className={`w-full sm:w-${size} md:w-${size} lg:w-${sizeLg} px-4 py-4 bg-white mt-6 shadow-lg cursor-pointer rounded-lg animate-fade-in-down`}
       enter="transition ease-[cubic-bezier(0.68,-0.3,0.32,1)] duration-700 transform order-first"
       enterFrom="opacity-0 -translate-y-8"
       enterTo="opacity-100 translate-y-0"
@@ -109,6 +108,7 @@ const Card = ({ item, setSelectedCard, handleSelection, index, isFocused = false
       an
     >
       <div
+        className="z-20"
         key={`feature-${index}`}
         onClick={() => setSelectedCard(isFocused ? null : item)}
       >
@@ -116,7 +116,7 @@ const Card = ({ item, setSelectedCard, handleSelection, index, isFocused = false
           <span class="group relative">
             <div class="absolute bottom-[calc(100%+0.5rem)] left-[50%] -translate-x-[50%] hidden group-hover:block w-auto">
               <div class="bottom-full right-0 rounded bg-primary px-4 py-1 text-sm text-white whitespace-nowrap">
-                More infos
+                Enquire now
               </div>
             </div>
             <svg
@@ -125,7 +125,11 @@ const Card = ({ item, setSelectedCard, handleSelection, index, isFocused = false
               viewBox="0 0 24 24"
               stroke="currentColor"
               className="h-6 w-6 text-gray-500"
-              onClick={() => handleSelection(item)}
+              onClick={(e) => {
+                e.stopPropagation();
+                handleSelection(item)
+              }
+              }
             >
               <path
                 strokeLinecap="round"

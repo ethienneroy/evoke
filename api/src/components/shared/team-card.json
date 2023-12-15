@@ -2,7 +2,8 @@
   "collectionName": "components_shared_team_cards",
   "info": {
     "displayName": "teamCard",
-    "icon": "smile"
+    "icon": "smile",
+    "description": ""
   },
   "options": {},
   "attributes": {
