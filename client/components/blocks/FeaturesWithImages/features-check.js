@@ -5,14 +5,6 @@ const FeaturesCheck = ({ features }) => {
   const [selectedFeature, setSelectedFeature] = useState(null)
 
   const handleSelection = (index) => {
-    // console.log('settuing it atr', index)
-    // if (selectedFeature >= 0) {
-    //   console.log('setting to nulkl')
-    //   setSelectedFeature(null)
-    // } else if({
-    //   console.log('setting to ', index)
-    //   setSelectedFeature(index)
-    // }
 
     selectedFeature === null ? setSelectedFeature(index) : setSelectedFeature(null)
 

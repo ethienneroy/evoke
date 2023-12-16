@@ -21,6 +21,12 @@ const FeaturesWithImages = dynamic(
     ssr: true,
   }
 );
+const FeaturesCentered = dynamic(
+  () => import('../../blocks/FeaturesCentered'),
+  {
+    ssr: true,
+  }
+);
 const Hero = dynamic(() => import('../../blocks/Hero'), {
   ssr: true,
 });
@@ -107,6 +113,9 @@ const BlockManager = ({ blocks, contentType, pageData, type }) => {
             break;
           case 'blocks.contact-us':
             Block = ContactUs;
+            break;
+          case 'blocks.features-centered':
+            Block = FeaturesCentered;
             break;
           case 'blocks.carousel':
             Block = Carousel;

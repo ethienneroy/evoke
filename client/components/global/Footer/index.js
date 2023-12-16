@@ -9,8 +9,6 @@ const Footer = ({ footer, pageData }) => {
   const theme = delve(footer, 'button.theme');
   const socialNetworks = delve(footer, 'socialNetworks');
 
-  console.log('terms', footer)
-
   return (
     <footer className="bg-white mt-4">
       <div className="max-w-screen-lg xl:max-w-screen-xl mx-auto px-4 sm:px-6 md:px-8 text-gray-400 dark:text-gray-300">

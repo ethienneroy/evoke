@@ -5,7 +5,6 @@ import { getStrapiURL } from "../../utils"
 
 export default async function handler(req, res) {
 
-    // console.log('req', req.body)
 
     const { email, details: text, phone, subject, name } = JSON.parse(req.body)
     const msg = {
@@ -21,16 +20,9 @@ export default async function handler(req, res) {
             From: ${name} - ${email} - ${phone}
         `,
     }
-    console.log('trying to send email')
     await fetch(getStrapiURL('/email'), {
         method: 'POST', body: JSON.stringify(msg), headers: { accept: 'application/json', 'content-type': 'application/json' },
     })
         .then(() => res.status(200).json('success'))
         .catch(() => res.status(400).json('error'))
-    // .then((res) => {
-    //     console.log('this shit worked')
-    // }).catch((err) => {
-    //     console.error('something wroong happened')
-    // })
-    // res.status(200).json('success')
 }

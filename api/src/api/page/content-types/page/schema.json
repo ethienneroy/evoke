@@ -49,7 +49,8 @@
         "blocks.testimonial",
         "blocks.contact-us",
         "blocks.carousel",
-        "blocks.slide"
+        "blocks.slide",
+        "blocks.features-centered"
       ],
       "pluginOptions": {
         "i18n": {

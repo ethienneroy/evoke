@@ -34,7 +34,6 @@ const Carousel = ({ slides }) => {
 
     const intervalFunction = () => {
         if (typeof window !== 'undefined') {
-            console.log('changing slides', window.location.hash)
             const slide = window.location.hash && window.location.hash.split('#slide').length ? window.location.hash.split('#slide')[1] : '0'
             const newSlide = Number(slide) + 1 > slides.length - 1 ? 0 : Number(slide) + 1
             window.location.hash = `#slide${newSlide}`
@@ -77,9 +76,7 @@ const Carousel = ({ slides }) => {
     }
 
     useEffect(() => {
-        console.log('in the effect', isVisible)
         if (!isVisible) {
-            console.log('celaring the interval')
             stopInterval()
         } else {
             startInterval()

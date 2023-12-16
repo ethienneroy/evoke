@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_blocks_features_centereds",
+  "info": {
+    "displayName": "FeaturesCentered",
+    "icon": "bulletList",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "subtitle": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "features": {
+      "displayName": "FeatureWithIcon",
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.feature-with-icon"
+    }
+  }
+}

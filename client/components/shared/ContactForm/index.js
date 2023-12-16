@@ -44,7 +44,6 @@ const ContactForm = ({ popup = false, subject, sendEmail }) => {
     });
 
     function handleChange(e) {
-        // console.log('handling change', e.target.value)
         setState({ ...state, [e.target.name]: e.target.value });
     }
 
@@ -52,7 +51,6 @@ const ContactForm = ({ popup = false, subject, sendEmail }) => {
         event.preventDefault()
         fetch('/api/contactUs', { method: 'post', body: JSON.stringify(state) })
         .then((res) => {
-            // console.log('should clear form')
             toast("Message sent!")
             setState({
                 email: '',
@@ -62,7 +60,6 @@ const ContactForm = ({ popup = false, subject, sendEmail }) => {
                 details: '',
             })
         })
-        // console.log('isisi a', a)
     }
 
 

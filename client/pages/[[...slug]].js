@@ -8,6 +8,7 @@ const BlockManager = dynamic(
 );
 import { getData, handleRedirection } from '../utils';
 import { getLocalizedParams } from '../utils/localize';
+import CustomLink from '../components/shared/CustomLink';
 
 const Universals = ({ global, pageData, preview }) => {
   if (pageData === null) {
@@ -15,7 +16,7 @@ const Universals = ({ global, pageData, preview }) => {
   }
 
   const blocks = delve(pageData, 'attributes.blocks');
-  if(typeof window !== 'undefined') localStorage.setItem('globalData', JSON.stringify(global))
+  if (typeof window !== 'undefined') localStorage.setItem('globalData', JSON.stringify(global))
   return (
     <Layout global={global} pageData={pageData} type="pages" preview={preview}>
       {blocks && (
@@ -26,6 +27,12 @@ const Universals = ({ global, pageData, preview }) => {
           pageData={pageData}
         />
       )}
+
+      <div class='fixed bottom-0 w-full z-20'>
+        <button class='bottom-0 my-8 float-right px-5 py-2 bg-primary mr-3 text-white text-sm font-bold tracking-wide rounded-full focus:outline-none'>
+          <CustomLink {...delve(global, 'navigation.rightButton')} />
+        </button>
+      </div>
     </Layout>
   );
 };
