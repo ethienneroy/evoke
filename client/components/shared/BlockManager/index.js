@@ -114,7 +114,7 @@ const BlockManager = ({ blocks, contentType, pageData, type }) => {
         }
 
         return Block ? (
-          <div key={`index-${index}`}>
+          <div key={`index-${index}}`} id={`${block.__component.split('.')[1]}`}>
             {/* {type && contentType && (
               <span className="group bg-primary text-blue-800 text-sm font-semibold inline-flex items-center absolute right-0 m-2 p-1.5 rounded-full dark:bg-gray-700 dark:text-blue-400">
                 <svg
