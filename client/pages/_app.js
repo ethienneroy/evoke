@@ -6,6 +6,7 @@ import { getStrapiURL } from "../utils";
 import { getLocalizedParams } from "../utils/localize";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import '../styles/global.css'
 
 const queryClient = new QueryClient();
 

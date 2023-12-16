@@ -3,6 +3,9 @@ import delve from 'dlv';
 import Cta from './cta';
 import Logo from './logo';
 // import Nav from './nav';
+import Link from 'next/link';
+
+import { useRouter } from 'next/router';
 
 
 
@@ -45,11 +48,28 @@ import {
 
 const Navigation = ({ pageData, navigation, companyEmail, companyPhone }) => {
 
+  const locale = delve(pageData, 'attributes.locale')
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const { push } = useRouter();
+
+  const handleMenuClick = (link) => {
+    if (link.href.includes('#') && !link.href.includes('.')) {
+      document.getElementById(link.href.split('#')[1]).scrollIntoView()
+    } else {
+      push(link.href)
+    }
+  }
+
+  const handleMenuClickMobile = (link) => {
+    setMobileMenuOpen(false)
+    setTimeout(() => {
+      handleMenuClick(link)
+    }, 500)
+  }
 
   return (
     <header className="bg-white">
-      <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
+      <nav className="mx-auto flex max-w-7xl items-center justify-between lg:px-8" aria-label="Global">
         <div className="flex lg:flex-1">
           <a href="/" className="-m-1.5 p-1.5">
             <span className="sr-only">Evoke Tennis</span>
@@ -71,15 +91,19 @@ const Navigation = ({ pageData, navigation, companyEmail, companyPhone }) => {
           </button>
         </div>
         <Popover.Group className="hidden lg:flex lg:gap-x-12">
-          <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
-            Features
-          </a>
-          <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
-            Marketplace
-          </a>
-          <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
-            Company
-          </a>
+
+          {navigation.links.map((link, index) => (
+            <Link
+              href={`${delve(link, 'href')}?lang=${locale || 'en'}`}
+              key={`navigationLink-${index}`}
+              scroll={false}
+              shallow={true}
+            >
+              <a onClick={() => handleMenuClick(link)} className="text-sm font-semibold leading-6 text-gray-900" key={`link-${index}`} target={delve(link, 'target')}>
+                {delve(link, 'label')}
+              </a>
+            </Link>
+          ))}
         </Popover.Group>
         <div className="hidden lg:flex lg:flex-1 flex lg:justify-end">
           <div className='flex flex-col'>
@@ -120,24 +144,18 @@ const Navigation = ({ pageData, navigation, companyEmail, companyPhone }) => {
           <div className="mt-6 flow-root">
             <div className="-my-6 divide-y divide-gray-500/10">
               <div className="space-y-2 py-6">
-                <a
-                  href="#"
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                >
-                  Features
-                </a>
-                <a
-                  href="#"
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                >
-                  Marketplace
-                </a>
-                <a
-                  href="#"
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                >
-                  Company
-                </a>
+
+                {navigation.links.map((link, index) => (
+                  <Link
+                    href={`${delve(link, 'href')}?lang=${locale || 'en'}`}
+                    key={`navigationLink-${index}`}
+                    scroll={true}
+                  >
+                    <a onClick={() => handleMenuClickMobile(link)} className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50" key={`link-${index}`}target={delve(link, 'target')}>
+                      {delve(link, 'label')}
+                    </a>
+                  </Link>
+                ))}
               </div>
               <div className="py-6 flex flex-column">
                 <a href={`tel:${companyPhone}`} className="mr-2 py-2 px-4 hidden 2xl:block">
