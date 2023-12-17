@@ -12,7 +12,7 @@ const MemberCards = ({ members, buttonLabel }) => {
             <div className="flex-col flex justify-center items-center">
 
               <div class="w-full max-w-xs bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                <a href="#">
+                <a href={delve(member, "attributes.link")}>
                   <img class="rounded-t-lg" src={getStrapiMedia(
                     delve(member, "attributes.picture.data.attributes.url")
                   )} alt="product image" />
@@ -54,7 +54,7 @@ const MemberCards = ({ members, buttonLabel }) => {
                       {delve(member, "attributes.shortDescription")}
                     </span>
                   </div>
-                  <a href= {delve(member, "attributes.link")} class={`flex justify-center p-5 text-white bg-primary hover:bg-primary-darker focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800`}>{buttonLabel}</a>
+                  <a href={delve(member, "attributes.link")} class={`flex justify-center p-5 text-white bg-primary hover:bg-primary-darker focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800`}>{buttonLabel}</a>
                 </div>
 
               </div>
