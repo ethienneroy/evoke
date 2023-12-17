@@ -26,13 +26,11 @@ const Cards = ({ cards }) => {
 
 
   const handleSelection = (item) => {
-    console.log(item.title)
     setSubject(item.title)
     setShowContactForm(true)
   }
 
   if (selectedCard) {
-
     return (
       <div className="relative overflow-scroll cursor-pointer">
         <button onClick={() => setSelectedCard(null)} className="absolute top-0 right-0 p-4">
@@ -50,21 +48,12 @@ const Cards = ({ cards }) => {
                 aria-hidden="true"
                 className="pointer-events-none lg:absolute lg:inset-y-0 lg:mx-auto lg:w-full lg:max-w-7xl"
               >
-                <div className="markdown-body ck-content overflow-scroll sm:relative sm:pt-15 lg:absolute transform lg:w-1/2 sm:left-1/2 sm:translate-x-8 lg:left-1/2 lg:top-1/4 lg:translate-x-6 shadow-lg rounded-lg  animate-fade-in-down">
+                <div className="markdown-body overflow-scroll sm:relative sm:pt-15 lg:absolute transform lg:w-1/2 sm:left-1/2 sm:translate-x-8 lg:left-1/2 lg:top-1/4 lg:translate-x-6 shadow-lg rounded-lg  animate-fade-in-down">
                   <div className={styles['ck-no-border']}>
-                    <CKEditor
-
-                      editor={ClassicEditor}
-                      onReady={(editor) => {
-                        editor.ui.view.toolbar.element.remove();
-                      }}
-                      data={delve(selectedCard, 'informations') ? selectedCard.informations.replaceAll(
+                    <div className={'p-5'} dangerouslySetInnerHTML={{ __html: selectedCard.informations.replaceAll(
                         '"/uploads',
                         `"${process.env.NEXT_PUBLIC_API_URL}/uploads`
-                      ) : null}
-                      disabled={true}
-                      plugins={['autogrow']}
-                    />
+                      ) }}/>
                   </div>
                 </div>
               </div>
@@ -94,7 +83,7 @@ const Card = ({ item, setSelectedCard, handleSelection, index, isFocused = false
 
   return (
     <div
-      className={isFocused ? `w-full sm:w-full md:w-1/2 lg:w-full px-4 py-4 bg-white mt-6 shadow-lg rounded-lg` : `w-full sm:w-1/2 md:w-1/2 lg:w-1/4 px-4 py-4 bg-white mt-6 shadow-lg rounded-lg`}
+      className={isFocused ? `w-full cursor-pointer sm:w-full md:w-1/2 lg:w-full px-4 py-4 bg-white mt-6 shadow-lg rounded-lg` : `w-full sm:w-1/2 md:w-1/2 lg:w-1/4 px-4 py-4 bg-white mt-6 shadow-lg rounded-lg cursor-pointer`}
       key={`feature-${index}`}
       onClick={() => setSelectedCard(isFocused ? null : item)}
     >

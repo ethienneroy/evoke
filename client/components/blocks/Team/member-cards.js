@@ -18,7 +18,7 @@ const MemberCards = ({ members, buttonLabel }) => {
                   )} alt="product image" />
                 </a>
                 <div class="p-8">
-                  <a href="#">
+                  <a href={delve(member, "attributes.link")}>
                     <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">                  {delve(member, "attributes.username")}
                     </h5>
                   </a>
