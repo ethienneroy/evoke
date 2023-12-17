@@ -40,7 +40,8 @@ const ContactInputBox = ({ type, placeholder, name, value, handleChange }) => {
 const ContactForm = ({ popup = false, subject, sendEmail }) => {
     const [state, setState] = useState({
         email: "",
-        message: ""
+        message: "",
+        subject
     });
 
     function handleChange(e) {

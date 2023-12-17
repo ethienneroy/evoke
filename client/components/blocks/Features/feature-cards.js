@@ -26,6 +26,7 @@ const Cards = ({ cards }) => {
 
 
   const handleSelection = (item) => {
+    console.log(item.title)
     setSubject(item.title)
     setShowContactForm(true)
   }
@@ -84,77 +85,61 @@ const Cards = ({ cards }) => {
           <Card item={item} setSelectedCard={handleIt} handleSelection={handleSelection} index={index} />
 
         ))}
-      {showContactForm && <Modal setShowContactForm={setShowContactForm} subject={subject} />}
+      {showContactForm && subject && <Modal setShowContactForm={setShowContactForm} subject={subject} />}
     </div>
   );
 };
 
 const Card = ({ item, setSelectedCard, handleSelection, index, isFocused = false }) => {
-  const size = isFocused ? 'full' : '1/2'
-  const sizeLg = isFocused ? 'full' : '1/4'
-  return (
-    <Transition
-      show={true}
-      as="article"
-      unmount={false}
-      className={`w-full sm:w-${size} md:w-${size} lg:w-${sizeLg} px-4 py-4 bg-white mt-6 shadow-lg cursor-pointer rounded-lg animate-fade-in-down`}
-      enter="transition ease-[cubic-bezier(0.68,-0.3,0.32,1)] duration-700 transform order-first"
-      enterFrom="opacity-0 -translate-y-8"
-      enterTo="opacity-100 translate-y-0"
-      leave="transition ease-[cubic-bezier(0.68,-0.3,0.32,1)] duration-300 transform absolute"
-      leaveFrom="opacity-100 translate-y-0"
-      leaveTo="opacity-0 translate-y-12"
-      beforeEnter={() => heightFix()}
-      an
-    >
-      <div
-        className="z-20"
-        key={`feature-${index}`}
-        onClick={() => setSelectedCard(isFocused ? null : item)}
-      >
-        <div className="flex items-center align-end">
-          <span class="group relative">
-            <div class="absolute bottom-[calc(100%+0.5rem)] left-[50%] -translate-x-[50%] hidden group-hover:block w-auto">
-              <div class="bottom-full right-0 rounded bg-primary px-4 py-1 text-sm text-white whitespace-nowrap">
-                Enquire now
-              </div>
-            </div>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              className="h-6 w-6 text-gray-500"
-              onClick={(e) => {
-                e.stopPropagation();
-                handleSelection(item)
-              }
-              }
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-              />
-            </svg>
-          </span>
-        </div>
-        <div className="flex-shrink-0">
-          <div className="flex items-center mx-auto justify-center h-24 w-24 rounded-md">
-            <img
-              src={getStrapiMedia(delve(item, "image.data.attributes.url"))}
-              alt={delve(item, "image.data.attributes.alternativeText")}
-            />
-          </div>
-        </div>
-        <h3 className="text-2xl sm:text-xl text-gray-700 font-semibold py-4">
-          {delve(item, "title")}
-        </h3>
 
-        <p className="text-md  text-gray-500 py-4">{delve(item, "text")}</p>
+  return (
+    <div
+      className={isFocused ? `w-full sm:w-full md:w-1/2 lg:w-full px-4 py-4 bg-white mt-6 shadow-lg rounded-lg` : `w-full sm:w-1/2 md:w-1/2 lg:w-1/4 px-4 py-4 bg-white mt-6 shadow-lg rounded-lg`}
+      key={`feature-${index}`}
+      onClick={() => setSelectedCard(isFocused ? null : item)}
+    >
+      <div className="flex items-center align-end">
+        <span class="group relative">
+          <div class="absolute bottom-[calc(100%+0.5rem)] left-[50%] -translate-x-[50%] hidden group-hover:block w-auto">
+            <div class="bottom-full right-0 rounded bg-primary px-4 py-1 text-sm text-white whitespace-nowrap">
+              Enquire now
+            </div>
+          </div>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            className="h-6 w-6 text-gray-500"
+            onClick={(e) => {
+              e.stopPropagation();
+              handleSelection(item)
+            }
+            }
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+            />
+          </svg>
+        </span>
       </div>
-    </Transition>
+      <div className="flex-shrink-0">
+        <div className="flex items-center mx-auto justify-center h-24 w-24 rounded-md">
+          <img
+            src={getStrapiMedia(delve(item, "image.data.attributes.url"))}
+            alt={delve(item, "image.data.attributes.alternativeText")}
+          />
+        </div>
+      </div>
+      <h3 className="text-2xl sm:text-xl text-gray-700 font-semibold py-4">
+        {delve(item, "title")}
+      </h3>
+
+      <p className="text-md  text-gray-500 py-4">{delve(item, "text")}</p>
+    </div>
   )
 }
 
