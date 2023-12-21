@@ -7,7 +7,7 @@ import { getLocalizedParams } from "../utils/localize";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import '../styles/global.css'
-
+import Script from "next/script";
 const queryClient = new QueryClient();
 
 function MyApp({ Component, pageProps }) {
@@ -18,6 +18,18 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <>
+
+      <Script src="https://www.googletagmanager.com/gtag/js?id=G-Z5Y2JFF0HX" />
+      <Script id="google-analytics">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+ 
+          gtag('config', 'G-Z5Y2JFF0HX');
+        `}
+      </Script>
+
       <QueryClientProvider client={queryClient}>
         <Component {...pageProps} />
         <ToastContainer
