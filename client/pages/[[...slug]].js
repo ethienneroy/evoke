@@ -28,7 +28,7 @@ const Universals = ({ global, pageData, preview }) => {
         />
       )}
 
-      <div class='fixed bottom-0 w-full z-20'>
+      <div class='sticky bottom-0 z-20'>
         <button class='bottom-0 my-8 float-right px-5 py-2 bg-primary mr-3 text-white text-sm font-bold tracking-wide rounded-full focus:outline-none'>
           <CustomLink {...delve(global, 'navigation.rightButton')} />
         </button>
