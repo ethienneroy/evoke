@@ -28,11 +28,9 @@ const FeaturesWithImages = ({ header, theme, text, featuresCheck, image }) => {
           </div>
 
           <div className="mt-10 lg:-mx-4 relative relative-20 lg:mt-0 lg:col-start-1">
-            <img
-              src={getStrapiMedia(delve(image, "data.attributes.url"))}
-              alt={delve(image, "data.attributes.alternativeText")}
-              className="relative mx-auto shadow-lg rounded-lg w-auto"
-            />
+          <video autoPlay controls className="relative mx-auto shadow-lg rounded-lg w-auto">
+              <source src={getStrapiMedia(delve(image, "data.attributes.url"))}/> 
+            </video>
           </div>
         </div>
       </div>

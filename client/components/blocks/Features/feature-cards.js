@@ -31,6 +31,7 @@ const Cards = ({ cards }) => {
   }
 
   if (selectedCard) {
+    
     return (
       <div className="relative overflow-scroll cursor-pointer">
         <button onClick={() => setSelectedCard(null)} className="absolute top-0 right-0 p-4">
@@ -46,7 +47,7 @@ const Cards = ({ cards }) => {
             <div className="mt-10 shadow-lg rounded-lg transition-opacity ease-in duration-700 opacity-100 ">
               <div
                 aria-hidden="true"
-                className="pointer-events-none lg:absolute lg:inset-y-0 lg:mx-auto lg:w-full lg:max-w-7xl"
+                className="lg:absolute lg:inset-y-0 lg:mx-auto lg:w-full lg:max-w-7xl"
               >
                 <div className="markdown-body overflow-scroll sm:relative sm:pt-15 lg:absolute transform lg:w-1/2 sm:left-1/2 sm:translate-x-8 lg:left-1/2 lg:top-1/4 lg:translate-x-6 shadow-lg rounded-lg  animate-fade-in-down">
                   <div className={styles['ck-no-border']}>
